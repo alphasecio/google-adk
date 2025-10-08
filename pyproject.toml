@@ -13,11 +13,12 @@ requires-python = ">=3.12"
 keywords = ["google", "adk", "agents", "gemini"]
 
 dependencies = [
-"google-cloud-aiplatform",
-"google-auth",
-"python-dotenv",
+    "google-cloud-aiplatform[adk,agent_engines]==1.110.0",
+    "google-auth>=2.41.1",
+    "python-dotenv==1.1.1",
+    "pydantic==2.12.0",
+    "cloudpickle==3.1.1",
 ]
 
 [tool.setuptools]
-
 packages = ["hello"]
