@@ -3,6 +3,7 @@ import random
 import dotenv
 import google.auth
 from google.adk.agents import Agent
+from typing import List
 
 dotenv.load_dotenv()
 
@@ -15,7 +16,7 @@ def greet(name: str) -> str:
     """
     return f"Hello, {name}!"
 
-def roll_dice(n_dice: int) -> list[int]:
+def roll_dice(n_dice: int) -> List[int]:
     """Rolls n_dice 6-sided dice and returns the results.
     Args:
         n_dice: An integer denoting the number of dice to be rolled.
