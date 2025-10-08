@@ -24,19 +24,9 @@ def roll_dice(n_dice: int) -> list[int]:
     """
     return [random.randint(1, 6) for _ in range(n_dice)]
 
-class RootAgent(Agent):
-    """The root agent for the application."""
-
-def __init__(self, **kwargs):
-    super().__init__(
-        **kwargs
-    )
-    
-    self.set_config(
-        name="root_agent",
-        model="gemini-2.5-flash",
-        instruction="You are an AI assistant designed to provide helpful information.",
-        tools=[greet, roll_dice],
+root_agent = Agent(
+    name="root_agent",
+    model="gemini-2.5-flash",
+    instruction="You are an AI assistant designed to provide helpful information.",
+    tools=[greet, roll_dice],
 )
-
-root_agent = RootAgent
