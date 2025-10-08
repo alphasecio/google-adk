@@ -13,7 +13,7 @@ requires-python = ">=3.12"
 keywords = ["google", "adk", "agents", "gemini"]
 
 dependencies = [
-"google-adk-agents",
+"google-cloud-aiplatform",
 "google-auth",
 "python-dotenv",
 ]
