@@ -26,7 +26,7 @@ def roll_dice(n_dice: int) -> List[int]:
     return [random.randint(1, 6) for _ in range(n_dice)]
 
 root_agent = Agent(
-    name="root_agent",
+    name="hello",
     model="gemini-2.5-flash",
     instruction="You are an AI assistant designed to provide helpful information.",
     tools=[greet, roll_dice],
