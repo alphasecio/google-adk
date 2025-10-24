@@ -49,10 +49,17 @@ Note: For Vertex AI deployments, make sure your active Google Cloud credentials 
 
 
 ### 🚀 Deploy to Agent Engine
+Use `poetry` to install necessary pre-requisites.
+```
+pip install poetry
+poetry lock
+poetry install --with deployment
+```
+
 You can deploy each agent directly to Vertex AI Agent Engine.
 ```
-python hello/deploy.py
-python web_risk/deploy.py
+python -m hello.deploy
+python -m web_risk.deploy
 ```
 
 A successful deployment will result in:
