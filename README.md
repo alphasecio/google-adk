@@ -3,18 +3,21 @@ Sample Google Agent Development Kit ([ADK](https://google.github.io/adk-docs/)) 
 
 
 ### 🤖 Agent Summary
-| Agent    | Description                                                               |
-|----------|---------------------------------------------------------------------------|
-| hello    | Greets users and rolls dice using Python functions.                       |
-| web_risk | Detects malware, phishing, and unwanted software URLs using Web Risk API. |
+| Agent    | Description                                                                 |
+|----------|-----------------------------------------------------------------------------|
+| hello    | Greets users and rolls dice using Python functions.                         |
+| web_risk | Detects malware, phishing, and unwanted software URLs using Web Risk API.   |
+| scc      | Lists top SCC findings in a project, and remediation guidance for a finding.|
 
 
 ### 🧠 Tools Summary
-| Agent	   | Tool	             | Description                                                  |
-|----------|-------------------|--------------------------------------------------------------|
-| hello	   | greet(name)	     | Returns a friendly greeting.                                 |
-| hello	   | roll_dice(n_dice) | Rolls N six-sided dice and returns the results.              |
-| web_risk | lookup_url(url)	 | Checks a URL against Google’s Web Risk database for threats. |
+| Agent	   | Tool	                      | Description                                                  |
+|----------|----------------------------|--------------------------------------------------------------|
+| hello	   | greet(name)	              | Returns a friendly greeting.                                 |
+| hello	   | roll_dice(n_dice)          | Rolls N six-sided dice and returns the results.              |
+| web_risk | lookup_url(url)	          | Checks a URL against Google’s Web Risk database for threats. |
+| scc      | top_vulnerability_findings | Lists top SCC vulnerability findings in a project.           |
+| scc      | get_finding_remediation    | Returns remediation guidance for a finding.                  |
 
 
 ### 📁 Directory Structure
@@ -22,6 +25,10 @@ Sample Google Agent Development Kit ([ADK](https://google.github.io/adk-docs/)) 
 ├── hello/
 |   ├── __init__.py
 │   ├── agent.py         # Defines the "hello" agent and its tools
+│   └── deploy.py        # Deployment script for Agent Engine
+├── scc/
+|   ├── __init__.py
+│   ├── agent.py         # Defines the "scc" agent and its tools
 │   └── deploy.py        # Deployment script for Agent Engine
 ├── web_risk/
 |   ├── __init__.py
@@ -35,11 +42,11 @@ Sample Google Agent Development Kit ([ADK](https://google.github.io/adk-docs/)) 
 ### ⚙️ Environment Configuration
 Copy `.env.example` to `.env` in the respective folders, and fill in your configuration:
 ```
-# Option 1: Gemini API Key (local development)
+# Option 1: Gemini API Key (for local development)
 GOOGLE_GENAI_USE_VERTEXAI=False
 GOOGLE_API_KEY="your-google-api-key"
 
-# Option 2: Vertex AI (preferred for deployment)
+# Option 2: Vertex AI (for Google Cloud deployment)
 GOOGLE_GENAI_USE_VERTEXAI=True
 GOOGLE_CLOUD_PROJECT="your-project-id"
 GOOGLE_CLOUD_LOCATION="your-location"
@@ -48,7 +55,7 @@ GOOGLE_CLOUD_STORAGE_BUCKET="your-storage-bucket"
 Note: For Vertex AI deployments, make sure your active Google Cloud credentials have `Vertex AI Admin` and `Storage Admin` roles.
 
 
-### 🚀 Deploy to Agent Engine
+### 🚀 Deploy to Vertex AI Agent Engine
 Use `poetry` to install necessary pre-requisites.
 ```
 pip install poetry
@@ -59,6 +66,7 @@ poetry install --with deployment
 You can deploy each agent directly to Vertex AI Agent Engine.
 ```
 python -m hello.deploy
+python -m scc.deploy
 python -m web_risk.deploy
 ```
 
@@ -107,5 +115,6 @@ Note: If reasoning engine is `projects/PROJECT_ID/locations/LOCATION/reasoningEn
 4️⃣ Register the agents. If successful, your agents will be visible and callable within Gemini Enterprise.
 ```
 python as_registry_client.py register_agent --config=config_hello.json
+python as_registry_client.py register_agent --config=config_scc.json
 python as_registry_client.py register_agent --config=config_webrisk.json
 ```
