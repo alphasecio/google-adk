@@ -5,8 +5,10 @@ import google.auth
 from typing import Dict, Any
 from google.adk.agents import Agent
 from google.cloud import webrisk_v1
+from . import prompt
 
 dotenv.load_dotenv()
+MODEL = "gemini-2.5-flash"
 
 _client = None
 
@@ -70,7 +72,7 @@ def lookup_url(url: str) -> Dict[str, Any]:
 
 root_agent = Agent(
     name="web_risk",
-    model="gemini-2.5-flash",
-    instruction="You are an AI assistant designed to provide helpful information.",
+    model=MODEL,
+    instruction=prompt.WEB_RISK_AGENT_PROMPT,
     tools=[lookup_url],
 )
