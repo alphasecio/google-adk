@@ -21,7 +21,11 @@ from google.cloud import securitycenter
 from google.protobuf import json_format 
 from google.adk.agents import Agent
 
+from . import prompt
+
 dotenv.load_dotenv()
+
+MODEL = "gemini-2.5-flash"
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -72,7 +76,7 @@ def top_vulnerability_findings(
 ) -> Dict[str, Any]:
     """Name: top_vulnerability_findings
 
-    Description: Lists the top ACTIVE, HIGH or CRITICAL severity findings of class VULNERABILITY for a specific project,
+    Description: Lists the top ACTIVE, HIGH or CRITICAL severity findings for a specific project,
                  sorted by Attack Exposure Score (descending). Includes the Attack Exposure score in the output if available.
                  Aids prioritization for remediation.
     Parameters:
@@ -84,7 +88,7 @@ def top_vulnerability_findings(
 
     parent = f"projects/{project_id}/sources/-" # Search across all sources in the project
     # Filter for active, high/critical vulnerability findings
-    filter_str = 'state="ACTIVE" AND findingClass="VULNERABILITY" AND (severity="HIGH" OR severity="CRITICAL")'
+    filter_str = 'state="ACTIVE" AND (severity="HIGH" OR severity="CRITICAL")'
 
     # Define a larger page size to fetch enough findings for sorting
     fetch_page_size = 10 # Fetch up to 10 findings initially
@@ -310,11 +314,7 @@ def get_finding_remediation(
 
 root_agent = Agent(
     name="scc",
-    model="gemini-2.5-flash",
-    instruction="""
-    You are a specialized security agent for Google Cloud. Your goal is to help users manage and remediate Security Command Center (SCC) findings.
-    Use the 'top_vulnerability_findings' tool to prioritize issues and the 'get_finding_remediation' tool to provide detailed fix instructions and resource context.
-    Always ask for the necessary project ID or finding details (resource name, category, or finding ID) to execute a tool request.
-    """,
+    model=MODEL,
+    instruction=prompt.SCC_AGENT_PROMPT,
     tools=[top_vulnerability_findings, get_finding_remediation],
 )
