@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 import vertexai
 from vertexai import agent_engines
 from vertexai.preview.reasoning_engines import AdkApp
-
 from security_manager.agent import security_manager
 
 def deploy_agent(agent_obj) -> None:
@@ -15,9 +14,9 @@ def deploy_agent(agent_obj) -> None:
         adk_app,
         display_name=agent_obj.name,
         requirements=[
-            "google-adk (>=0.0.2)",
-            "google-cloud-aiplatform[agent_engines] (>=1.88.0,<2.0.0)",
-            "google-genai (>=1.5.0,<2.0.0)",
+            "google-adk (>=1.18.0)",
+            "google-cloud-aiplatform[agent_engines] (>=1.126.0,<2.0.0)",
+            "google-genai (>=1.49.0,<2.0.0)",
             "pydantic (>=2.10.6,<3.0.0)",
             "absl-py (>=2.2.1,<3.0.0)",
             "google-auth (>=2.0.0)",
