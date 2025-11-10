@@ -17,16 +17,16 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.12"
-google-adk = "^1.0.0"
+google-adk = "^1.18.0"
 google-cloud-aiplatform = { extras = [
     "adk",
     "agent-engines",
-], version = "^1.93.0" }
+], version = "^1.126.0" }
 google-cloud-webrisk = "^1.18.1"
 google-cloud-securitycenter = "^1.41.0"
 google-cloud-asset = "^4.1.0"
 typing-extensions = "^4.15.0"
-google-genai = "^1.9.0"
+google-genai = "^1.49.0"
 python-dotenv = "^1.0.1"
 pydantic = "^2.10.6"
 cloudpickle = "^3.1.0"
