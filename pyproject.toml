@@ -10,6 +10,7 @@ keywords = ["google", "adk", "agents", "gemini", "security"]
 [tool.poetry]
 packages = [
     {include = "hello"}, 
+    {include = "hello_auth"}, 
     {include = "web_risk"},
     {include = "scc"},
     {include = "security_manager"}
@@ -21,15 +22,16 @@ google-adk = "^1.18.0"
 google-cloud-aiplatform = { extras = [
     "adk",
     "agent-engines",
-], version = "^1.126.0" }
+], version = "^1.127.0" }
 google-cloud-webrisk = "^1.18.1"
 google-cloud-securitycenter = "^1.41.0"
 google-cloud-asset = "^4.1.0"
 typing-extensions = "^4.15.0"
 google-genai = "^1.49.0"
-python-dotenv = "^1.0.1"
+python-dotenv = "^1.2.1"
 pydantic = "^2.10.6"
 cloudpickle = "^3.1.0"
+requests = "^2.32.5"
 
 [tool.poetry.group.deployment]
 optional = true
