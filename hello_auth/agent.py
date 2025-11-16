@@ -50,8 +50,10 @@ def get_github_access_token() -> str:
     Returns:
         Access token string or None if not authenticated
     """
-    token_data = get_access_token()
+    if not OAUTH_PROXY_API_KEY:
+        return None
     
+    token_data = get_access_token()
     if token_data and token_data.get('access_token'):
         return token_data['access_token']
     
@@ -63,8 +65,13 @@ def greet_github_user() -> str:
     Returns:
         A personalized greeting including username and email (if available).
     """
+    if not OAUTH_PROXY_API_KEY:
+        return (
+            f"❌ Configuration Error: OAUTH_PROXY_API_KEY not set.\n"
+            f"Set this environment variable to match your OAuth Proxy's API key."
+        )
+        
     access_token = get_github_access_token()
-    
     if not access_token:
         return f"❌ Not authenticated. Visit {OAUTH_PROXY_URL} to login and get access token."
     
