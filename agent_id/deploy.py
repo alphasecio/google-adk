@@ -1,10 +1,8 @@
 import os
-from absl import app
-from dotenv import load_dotenv
 import vertexai
 from vertexai import agent_engines, types
-from vertexai.preview.reasoning_engines import AdkApp
 from agent_id.agent import root_agent
+from dotenv import load_dotenv
 
 def main(argv: list[str]) -> None:
     del argv
