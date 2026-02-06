@@ -5,7 +5,7 @@ from typing import List, Any, Optional
 from google.adk.agents import Agent
 from google.adk.models import LlmResponse
 from google.cloud import modelarmor_v1
-from google.genai.types import Content, Part
+from google.genai.types import Content, Part, FinishReason
 
 dotenv.load_dotenv()
 
@@ -147,7 +147,8 @@ def sanitize_prompt(callback_context: Any, **kwargs: Any) -> Optional[LlmRespons
             content = Content(
                 role="model",
                 parts=[Part(text=block_msg)]
-            )
+            ),
+            finish_reason=FinishReason.STOP
         )
 
 root_agent = Agent(
