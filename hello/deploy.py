@@ -14,9 +14,10 @@ def deploy_agent(agent_obj) -> None:
         adk_app,
         display_name=agent_obj.name,
         requirements=[
-            "google-adk (>=1.18.0)",
-            "google-cloud-aiplatform[agent_engines] (>=1.126.0,<2.0.0)",
-            "google-genai (>=1.49.0,<2.0.0)",
+            "google-adk (>=1.24.0)",
+            "google-cloud-aiplatform[agent_engines] (>=1.136.0,<2.0.0)",
+            "google-cloud-modelarmor (>=0.4.0)",
+            "google-genai (>=1.62.0,<2.0.0)",
             "pydantic (>=2.10.6,<3.0.0)",
             "absl-py (>=2.2.1,<3.0.0)",
             "google-auth (>=2.0.0)",
