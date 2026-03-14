@@ -3,44 +3,17 @@ Sample Google Agent Development Kit ([ADK](https://google.github.io/adk-docs/)) 
 
 
 ### 🤖 Agent Summary
-| Agent    | Description                                                                 |
-|----------|-----------------------------------------------------------------------------|
-| hello    | Greets users and rolls dice using Python functions.                         |
-| web_risk | Detects malware, phishing, and unwanted software URLs using Web Risk API.   |
-| scc      | Lists top SCC findings in a project, and remediation guidance for a finding.|
-
-
-### 🧠 Tools Summary
-| Agent	   | Tool	                      | Description                                                  |
-|----------|----------------------------|--------------------------------------------------------------|
-| hello	   | greet(name)	              | Returns a friendly greeting.                                 |
-| hello	   | roll_dice(n_dice)          | Rolls N six-sided dice and returns the results.              |
-| web_risk | lookup_url(url)	          | Checks a URL against Google’s Web Risk database for threats. |
-| scc      | top_vulnerability_findings | Lists top SCC vulnerability findings in a project.           |
-| scc      | get_finding_remediation    | Returns remediation guidance for a finding.                  |
-
-
-### 📁 Directory Structure
-```
-├── hello/
-|   ├── __init__.py
-│   ├── agent.py         # Defines the "hello" agent and its tools
-│   └── deploy.py        # Deployment script for Agent Engine
-├── scc/
-|   ├── __init__.py
-│   ├── agent.py         # Defines the "scc" agent and its tools
-│   └── deploy.py        # Deployment script for Agent Engine
-├── web_risk/
-|   ├── __init__.py
-│   ├── agent.py         # Defines the "web_risk" agent and its tools
-│   └── deploy.py        # Deployment script for Agent Engine
-├── .env.example         # Environment variable template
-├── pyproject.toml       # Poetry project definition
-└── README.md
-```
+| Agent            | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| agent_id         | Deploys a simple agent with Agent Identity principal (preview)              |
+| hello            | Greets users and rolls dice using Python functions.                         |
+| scc              | Lists top SCC findings in a project, and remediation guidance for a finding.|
+| web_risk         | Detects malware, phishing, and unwanted software URLs using Web Risk API.   |
+| security_manager | Multi-agent security manager (includes SCC and Web Risk agents)             |
+| secret_agent     | Retrieves secrets from Secret Manager bound as environment variables        |
 
 ### ⚙️ Environment Configuration
-Copy `.env.example` to `.env` in the respective folders, and fill in your configuration:
+Copy `.env.example` to `.env` in the respective agent sub-folders, and fill in your configuration:
 ```
 # Option 1: Gemini API Key (for local development)
 GOOGLE_GENAI_USE_VERTEXAI=False
@@ -63,11 +36,11 @@ poetry lock
 poetry install --with deployment
 ```
 
-You can deploy each agent directly to Vertex AI Agent Engine.
+Navigate to each agent folder and deploy:
 ```
-python -m hello.deploy
-python -m scc.deploy
-python -m web_risk.deploy
+cd hello && python deploy.py
+cd ../scc && python deploy.py
+cd ../web_risk && python deploy.py
 ```
 
 A successful deployment will result in:
