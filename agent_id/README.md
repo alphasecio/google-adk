@@ -7,20 +7,21 @@ This project deploys a minimal Gemini-powered agent to Vertex AI Agent Engine us
 pip install google-cloud-aiplatform google-adk python-dotenv absl-py
 ```
 
-2. Create `.env` file (or copy from the repo root) in the `agent_id` directory with the following variables.
+2. Copy `.env.example` to `.env` from the `agent_id` root folder to the `agent_id` agent folder directory, and update as necessary.
 ```
 GOOGLE_GENAI_USE_VERTEXAI=True
 GOOGLE_CLOUD_PROJECT="your-project-id"
 GOOGLE_CLOUD_LOCATION="your-region"
 GOOGLE_CLOUD_STORAGE_BUCKET="your-storage-bucket"
+
 GOOGLE_CLOUD_AGENT_ENGINE_ENABLE_TELEMETRY=True
 OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=True
 ```
 
 ### 🚀 Deployment
-From the same directory as `agent_id`, run the deployment script:
+From the `agent_id` root folder, run:
 ```
-python -m agent_id.deploy
+python deploy.py
 ```
 
 The script will output the deployed Agent Name. Copy this value for the next step.
