@@ -19,6 +19,7 @@ google-cloud-aiplatform = { extras = [
     "adk",
     "agent-engines",
 ], version = "^1.141.0" }
+google-cloud-modelarmor = "^0.4.0"
 google-cloud-asset = "^4.2.0"
 typing-extensions = "^4.15.0"
 google-genai = "^1.67.0"
