@@ -33,7 +33,7 @@ def send_email(recipient: str, subject: str, body: str) -> str:
         return f"Error sending email: {e}"
 
 root_agent = Agent(
-    name="hello",
+    name="send_email",
     model="gemini-2.5-flash",
     instruction="You are an AI assistant designed to send emails.",
     tools=[send_email],
