@@ -9,7 +9,7 @@ keywords = ["google", "adk", "agents", "gemini", "security"]
 
 [tool.poetry]
 packages = [
-    {include = "security_manager"}
+    {include = "web_risk"}
 ]
 
 [tool.poetry.dependencies]
